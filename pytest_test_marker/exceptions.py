@@ -1,0 +1,2 @@
+class IncompatibleFileType(ValueError):
+    pass

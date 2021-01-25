@@ -1,0 +1,13 @@
+{ 
+    "example_marker": {
+        "modules": [
+            "src.test2"
+        ],
+        "classes": [
+            "src.test0.ExampleTestCase1"
+        ],
+        "functions": [
+            "src.test1.ExampleTestCase2.ex_test_func_2"
+        ]
+    }
+}
