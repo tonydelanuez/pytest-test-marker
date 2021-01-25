@@ -2,7 +2,7 @@ example_marker:
     modules:
         - src / test2.py
     classes:
-        - src/test0.py: : ExampleTestCase1
+        - src/test0.py::ExampleTestCase1
     functions:
-        - src/test1.py: : ExampleTestCase2: : ex_test_func_2
-        - tests/test_mark.py: : test_collection_modifier_init_markdefs
+        - src/test1.py::ExampleTestCase2::ex_test_func_2
+        - tests/test_mark.py::test_collection_modifier_init_markdefs
