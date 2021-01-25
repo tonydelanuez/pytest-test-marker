@@ -1,4 +1,4 @@
-import unittest
+import pytest
 
 from pytest_test_marker.manifest import ManifestFile
 
@@ -16,20 +16,18 @@ test_dict = {
 }
 
 
-class TestParserMethods(unittest.TestCase):
+def test_load_yaml_marks():
+    manifest = ManifestFile(test_yaml)
+    assert manifest.get_marks() == test_dict
 
-    def test_load_yaml_marks(self):
-        manifest = ManifestFile(test_yaml)
-        self.assertDictEqual(manifest.get_marks(), test_dict)
+def test_load_json_marks():
+    manifest = ManifestFile(test_json)
+    assert manifest.get_marks() == test_dict
 
-    def test_load_json_marks(self):
-        manifest = ManifestFile(test_json)
-        self.assertDictEqual(manifest.get_marks(), test_dict)
+def test_fd_closed():
+    manifest = ManifestFile(test_yaml)
+    fd = manifest.fd
+    del manifest
 
-    def test_fd_closed(self):
-        manifest = ManifestFile(test_yaml)
-        fd = manifest.fd
-        del manifest
-
-        with self.assertRaises(ValueError):
-            fd.read()
+    with pytest.raises(ValueError):
+        fd.read()
