@@ -20,13 +20,13 @@ class ManifestFile(object):
         self.fd = open(filename, 'r')
         self._ext = os.path.splitext(filename)[1]
 
+        exts = content_loaders.keys()
         if self._ext not in content_loaders.keys():
-            raise IncompatibleFileType("""Please use a manifest file from
-                                       these supported types: {}""".format(content_loaders.keys()))
-                                       
+            raise IncompatibleFileType("""Please use a manifest file with a
+                                       supported extension: {}""".format(exts))
+
     def __del__(self):
         self.fd.close()
-    
+
     def get_marks(self):
         return get_loader_for_file(self._ext)(self.fd)
-
