@@ -32,7 +32,7 @@ def parse_nodeid(nodeid):
     if num_parts == 3:
         # Reconstruct module_path/class_path/func_path
         for i in range(num_parts):
-            data_args[i] = "::".join(nodeid_parts[:i+1])
+            data_args[i] = "::".join(nodeid_parts[:i + 1])
     return ParsedNode(*data_args)
 
 
@@ -43,20 +43,23 @@ class MarkDefinition(object):
         self.classes = set(nodes.get('classes', []))
         self.functions = set(nodes.get('functions', []))
 
-    def item_in_scope(self, item):
+    def in_marked_module(self, module_path):
+        return (module_path and module_path in self.modules)
+
+    def in_marked_class(self, class_path):
+        return (class_path and class_path in self.classes)
+
+    def in_marked_func(self, func_path):
+        return (func_path and func_path in self.functions)
+
+    def should_mark(self, test_node):
         """Determine the highest scope the test node may
         be included in for a given marker"""
-        parsed_nodeid = parse_nodeid(item.nodeid)
+        node_info = parse_nodeid(test_node.nodeid)
 
-        if parsed_nodeid.module_path in self.modules:
-            return True
-        if (parsed_nodeid.class_path and
-                parsed_nodeid.class_path in self.classes):
-            return True
-        if (parsed_nodeid.func_path and
-                parsed_nodeid.func_path in self.functions):
-            return True
-        return False
+        return (self.in_marked_module(node_info.module_path)
+                or self.in_marked_class(node_info.class_path)
+                or self.in_marked_func(node_info.func_path))
 
 
 class CollectionModifier(object):
@@ -65,9 +68,9 @@ class CollectionModifier(object):
         self.markdefs = [MarkDefinition(k, v) for (k, v) in mark_data.items()]
 
     def apply_markers(self):
-        for item in self.test_items:
+        for test in self.test_items:
             for markdef in self.markdefs:
-                if markdef.item_in_scope(item):
-                    item.add_marker(markdef.name)
+                if markdef.should_mark(test):
+                    test.add_marker(markdef.name)
                     print("Applied marker {} to {}".format(markdef.name,
-                                                           item.nodeid))
+                                                           test.nodeid))
