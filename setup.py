@@ -11,7 +11,7 @@ setup(
     author_email='tony.delanuez@gmail.com',
     packages=['pytest_test_marker'],
     version='0.0.0',
-    install_requires=['pytest>=2.5'],
+    install_requires=['pytest>=2.5', 'PyYAML==5.4.1'],
     classifiers=['Development Status :: 5 - Production/Stable',
                 'Intended Audience :: Developers',
                 'License :: OSI Approved :: MIT License',
