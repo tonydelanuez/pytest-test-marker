@@ -26,7 +26,8 @@ class ManifestFile(object):
                                        supported extension: {}""".format(exts))
 
     def __del__(self):
-        self.fd.close()
+        if hasattr(self, 'fd'):
+            self.fd.close()
 
     def get_marks(self):
         return get_loader_for_file(self._ext)(self.fd)
