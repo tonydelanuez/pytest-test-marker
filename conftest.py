@@ -7,8 +7,8 @@ default_mark_path = 'tests/test_data/marks.yml'
 _mark_file_flag = '--mark-file'
 _mark_file_opt = 'mark-file'
 
+
 def pytest_addoption(parser):
-    print("ADDING OPTION")
     parser.addoption(_mark_file_flag, dest=_mark_file_opt, type=str,
                      help='Path to file with mark definitions')
 
