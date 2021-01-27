@@ -1,4 +1,3 @@
-import os
 from pytest_test_marker.manifest import ManifestFile
 from pytest_test_marker.mark import CollectionModifier
 
