@@ -4,6 +4,8 @@ This package gives you the ability to define your pytest markers in a configurat
 via YAML/JSON. You can use this tool to mark individual test functions, classes, or entire modules
 with a custom pytest marker.
 
+Rather than wrapping individual functions or classes with the @pytest.mark.foo decorator, declare your
+markers alongside of your code for easy updating / keeping track of large lists of markers.
 
 ## Usage:
 
