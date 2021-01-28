@@ -38,3 +38,10 @@ pytest_markers.json:
 }
 ```
 
+Install the plugin: 
+`pip install pytest-test-marker`
+
+When invoking pytest, use the `--mark-file` option (as well as any markers you want checked in your test run):
+`pytest /path/to/tests --mark-file pytest_markers.yml` 
+
+
