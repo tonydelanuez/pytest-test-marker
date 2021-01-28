@@ -2,7 +2,7 @@ import pytest
 import uuid
 
 
-from pytest_test_marker.mark import CollectionModifier, MarkDefinition, parse_nodeid
+from pytest_test_marker.mark import MarkDefinition, parse_nodeid
 
 
 test_marker_name = 'example_marker'
