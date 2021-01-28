@@ -4,13 +4,13 @@ from pytest_test_marker.mark import CollectionModifier
 
 default_mark_path = 'tests/test_data/marks.yml'
 
-_mark_file_flag = '--mark-file'
-_mark_file_opt = 'mark-file'
-
 
 def pytest_addoption(parser):
-    parser.addoption(_mark_file_flag, dest=_mark_file_opt, type=str,
-                     help='Path to file with mark definitions')
+    group = parser.getgroup('pytest-test-marker')
+    group.addoption('--mark-file', action='store',
+                    dest='mark-file', type=str,
+                    default=default_mark_path,
+                    help='Path to file with mark definitions')
 
 
 def add_custom_marks_to_pytest_config(config, marks):
@@ -33,7 +33,7 @@ def apply_marks_to_collected_tests(items, marks):
 
 
 def pytest_collection_modifyitems(config, items):
-    marks = gather_marks(config.getoption(_mark_file_opt))
+    marks = gather_marks(config.getoption('mark-file'))
     # Register marks with pytest before applying
     add_custom_marks_to_pytest_config(config, marks)
     apply_marks_to_collected_tests(items, marks)

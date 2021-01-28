@@ -21,5 +21,6 @@ setup(
                 'Programming Language :: Python :: 2.7',
                 'Programming Language :: Python :: 3.7',
                 'Programming Language :: Python :: 3.8',
-                ]
+                ],
+    entry_points={'pytest11': ["pytest-test-marker=pytest_test_marker.plugin"]}
 )
