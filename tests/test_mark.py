@@ -69,7 +69,7 @@ def test_markdefinition_in_marked_class(test_path, expected):
 
 
 @pytest.mark.parametrize("test_path,expected",
-                         [("src/test1.py::ExampleTestCase2::ex_test_func_2", True),
+                         [("src/test1.py::ExampleTestCase2::ex_test_func_2", True),  # noqa
                           ("src/test2.py::UnmarkedTestCase::test_foo", False)])
 def test_markdefinition_in_marked_function(test_path, expected):
     md = MarkDefinition(test_marker_name, test_dict[test_marker_name])
