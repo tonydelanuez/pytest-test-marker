@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      pytest-test-marker:
+      matrix:
         python-version: ['2.7', '3.6', '3.7', '3.8']
 
     steps:
@@ -22,7 +22,7 @@ jobs:
       - name: Linting and Unit Tests
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ pytest-test-marker.python-version }}
+          python-version: ${{ matrix.python-version }}
       - run: |
           pip install tox
           tox
