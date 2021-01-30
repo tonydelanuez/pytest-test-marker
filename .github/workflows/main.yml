@@ -10,12 +10,15 @@ on:
 
 jobs:
   build:
-    runs-on: python:3
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Linting and Unit Tests
-        run: |
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - run: |
           pip install tox
           tox
