@@ -7,6 +7,8 @@ with a custom pytest marker.
 Rather than wrapping individual functions or classes with the @pytest.mark.foo decorator, declare your
 markers alongside of your code for easy updating / keeping track of large lists of markers.
 
+*pytest-test-marker is tested on Python 2.7, 3.6, 3.7, 3.8, and 3.9*
+
 ## Usage:
 
 Declare a pytest marker file in either YAML or JSON
